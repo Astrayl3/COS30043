@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register App">
+    <meta name="author" content="Duong Ha Duc Anh">
+    <title>Registration App: Cloud Service</title>
+    <script src="/framework/js/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">  
+        <h1>Registration App: Cloud Service</h1>
+
+        <div>
+            <h2>Login Information</h2>
+            <label for="username">Enter username:</label>
+            <input type="text" id="username" v-model="username" name="username"><br>
+
+            <label for="password">Enter password:</label>
+            <input type="password" id="password" v-model="password" name="password"><br>
+
+            <label for="confirmPassword">Re-enter password:</label>
+            <input type="password" id="confirmPassword" v-model="confirmPassword" name="confirmPassword">
+            <span v-if="password !== confirmPassword && confirmPassword.length > 0">Password does not match</span>
+        </div>
+
+        <div>
+            <h2>Phone Information</h2>
+            <div>
+                <label>Operating System:</label>
+                <input type="radio" id="android" value="Android" v-model="selectedOS" name="os">
+                <label for="android">Android</label>
+                <input type="radio" id="ios" value="iOS" v-model="selectedOS" name="os">
+                <label for="ios">iOS</label>
+                <input type="radio" id="windows" value="Windows" v-model="selectedOS" name="os">
+                <label for="windows">Windows</label>
+            </div>
+
+            <div>
+                <label for="phoneModel">Model</label>
+                <select id="phoneModel" v-model="selectedModel" name="phoneModel">
+                    <option v-for="model in filteredModels" :key="model">{{ model }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <h2>Summary</h2>
+            <ul>
+                <li>Username: {{ username }}</li>
+                <li>OS: {{ selectedOS }}</li>
+                <li>Phone: {{ selectedModel }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    username: '',
+                    password: '',
+                    confirmPassword: '',
+                    selectedOS: 'Android',
+                    selectedModel: '',
+                    phones: {
+                        Android: ['HTC 10', 'Nokia 6', 'Samsung Galaxy 7', 'IDD VIOS Non Windows'],
+                        iOS: ['iPhone 6s', 'iPhone 6s Plus', 'iPhone 7', 'IDD Windows Non Android'],
+                        Windows: ['HP Elite x3', 'Microsoft Lumia 950', 'Microsoft Lumia 950 XL', 'IDD VIOS Non Android']
+                    }
+                };
+            },
+            computed: {
+                filteredModels() {
+                    return this.phones[this.selectedOS];
+                }
+            },
+            mounted() {
+                this.selectedModel = this.filteredModels[0];
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

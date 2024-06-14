@@ -1,18 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Information Web App</title>
-    <!-- Include VueJS and VueRouter -->
-    <script src="/framework/js/vue.global.js"></script>
-    <script src="/framework/js/vue-router.global.js"></script>
+    <title>Unit Information System</title>
+    <link href="/framework/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/framework/js/vue.js"></script>
+    <script src="/applookup2.js" defer></script>
 </head>
 <body>
-    <div id="app">
-        <router-view></router-view>
+    <div id="app" class="container mt-5">
+        <h1 class="mb-4">Unit Information System</h1>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>More Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="unit in units" :key="unit.code">
+                    <td>{{ unit.code }}</td>
+                    <td>{{ unit.description }}</td>
+                    <td><a href="#" @click.prevent="showDetails(unit.code)" class="btn btn-info btn-sm">Show Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div v-if="selectedUnit" class="mt-4">
+            <h2>Unit Code: {{ selectedUnit.code }}</h2>
+            <p><strong>Description:</strong> {{ selectedUnit.description }}</p>
+            <p><strong>Credit Points:</strong> {{ selectedUnit.creditPoints }}</p>
+            <p><strong>Type:</strong> {{ selectedUnit.type }}</p>
+        </div>
     </div>
-
-    <script src="/applookup2.js"></script>
+    <script src="/framework/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/framework/js/popper.min.js"></script>
+    <script src="/framework/js/bootstrap.min.js"></script>
 </body>
 </html>

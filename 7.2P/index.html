@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Units Table</title>
+    <script src="/framework/js/vue.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{text}}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Credit Points</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="unit in units" :key="unit.code">
+                    <td>{{ unit.code }}</td>
+                    <td>{{ unit.desc }}</td>
+                    <td>{{ unit.cp }}</td>
+                    <td>{{ unit.type }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

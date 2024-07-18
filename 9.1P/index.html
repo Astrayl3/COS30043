@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SingleWebPage">
+    <meta name="author" content="Duong Ha Duc Anh">
+    <title>Single Page Application</title>
+    <script src="./framework/js/vue.global.js"></script>
+    <script src="./framework/js/vue-router.global.js"></script>
+    <link rel="stylesheet" href="./framework/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">SPA</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/">Name Test</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/post-management">Post Management</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/student-marks">Student Marks</router-link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container mt-5">
+            <router-view></router-view>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
